@@ -799,7 +799,7 @@
 <body>
     <header class="header">
         <div class="header-content">
-            <a href="https://nysaabhi.github.io/Universe" class="logo">Deep</a>
+            <a href="https://nysaabhi.github.io/Deepintellgence" class="logo">Deep</a>
             <button class="wallet">
                 <i class="fas fa-wallet"></i>
                 Wallet
@@ -1670,6 +1670,287 @@ const categories = [
                     window.location.href = 'tel:9669181789';
                 }
                 
+                // Cities data with images
+const citiesData = [
+    {
+        name: "Mumbai",
+        image: "https://static.vecteezy.com/system/resources/previews/000/126/281/original/mumbai-landmarks-vector.jpg",  // Using placeholder image
+        quote: "The city of dreams where ambitions take flight and opportunities never sleep"
+    },
+    {
+        name: "Delhi",
+        image: "https://i.pinimg.com/736x/74/e4/f1/74e4f10b52bc4a7daa81c3e853019390.jpg",
+        quote: "Where ancient heritage meets modern aspirations in perfect harmony"
+    },
+    {
+        name: "Bangalore",
+        image: "https://cdn.vectorstock.com/i/preview-1x/23/70/bangalore-india-city-skyline-with-color-buildings-vector-47882370.jpg",
+        quote: "Silicon Valley of India, where innovation shapes tomorrow"
+    },
+    {
+        name: "Chennai",
+        image: "https://cdn.dribbble.com/users/158565/screenshots/1359610/madras-shot-1.png",
+        quote: "The cultural capital where tradition dances with technology"
+    },
+    {
+        name: "Pune",
+        image: "https://cdn.vectorstock.com/i/preview-1x/24/04/pune-india-city-skyline-with-color-buildings-vector-47882404.jpg",
+        quote: "Oxford of the East, where knowledge blooms and culture thrives"
+    },
+    {
+        name: "Bhopal",
+        image: "http://natureworldwide.in/wp-content/uploads/2021/03/151086218_190796579497700_2561381887060971181_o.jpg",
+        quote: "City of Lakes, where nature's beauty meets urban charm"
+    },
+    {
+        name: "Indore",
+        image: "https://i.pinimg.com/originals/b9/97/c0/b997c0b79b9c3b36bafbb05772332ec6.jpg",
+        quote: "India's cleanest city, where excellence is a way of life"
+    },
+    {
+        name: "Hyderabad",
+        image: "https://akm-img-a-in.tosshub.com/indiatoday/images/story/202302/hyderabad-sixteen_nine.jpg?VersionId=6FKFTOOA5NC6CtJViHJRQdBwPk_octR6",
+        quote: "Pearl City, where history and technology create magic"
+    },
+    {
+        name: "Ahmedabad",
+        image: "https://www.revv.co.in/blogs/wp-content/uploads/2020/03/Unexplore-places-to-visit-in-ahmedabad.jpg",
+        quote: "Manchester of India, where heritage meets innovation"
+    },
+    {
+        name: "Kolkata",
+        image: "https://www.travelsiteindia.com/blog/wp-content/uploads/2019/01/kolkata-victoria-memorial.jpg",
+        quote: "City of Joy, where every street tells a story"
+    },
+    {
+        name: "Jaipur",
+        image: "https://www.tripsavvy.com/thmb/Afl1v6bgmGid9kPfseymDiAYWa0=/3595x2397/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-518387310-04a30994bfb1461bb8000f1864ca1fc5.jpg",
+        quote: "Pink City, where royal heritage colors modern dreams"
+    }
+];
+
+// Create and display cities overlay
+function showCitiesOverlay() {
+    // Create overlay container if it doesn't exist
+    let overlay = document.getElementById('citiesOverlay');
+    if (!overlay) {
+        overlay = document.createElement('div');
+        overlay.id = 'citiesOverlay';
+        overlay.className = 'cities-overlay';
+        document.body.appendChild(overlay);
+    }
+
+    // Create content for overlay
+    overlay.innerHTML = `
+        <div class="cities-content">
+            <div class="cities-header">
+                <h2>Service Locations</h2>
+                <button class="close-cities" onclick="hideCitiesOverlay()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="cities-grid">
+                ${citiesData.map(city => `
+                    <div class="city-card" onclick="selectCity('${city.name}')">
+                        <div class="city-image-container">
+                            <img src="${city.image}" alt="${city.name}" class="city-image">
+                            <div class="city-overlay"></div>
+                        </div>
+                        <div class="city-info">
+                            <h3 class="city-name">${city.name}</h3>
+                            <p class="city-quote">${city.quote}</p>
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+    `;
+
+    // Show overlay with animation
+    setTimeout(() => overlay.classList.add('active'), 10);
+    
+    // Add these styles dynamically
+    const style = document.createElement('style');
+    style.textContent = `
+        .cities-overlay {
+            position: fixed;
+            top: 60px;
+            left: 0;
+            right: 0;
+            bottom: 60px;
+            background: rgba(26, 26, 31, 0.98);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            overflow-y: auto;
+        }
+
+        .cities-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .cities-content {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .cities-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .cities-header h2 {
+            color: var(--primary-color);
+            margin: 0;
+            font-size: 1.5em;
+        }
+
+        .close-cities {
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            font-size: 1.5em;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .cities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        .city-card {
+            border-radius: 12px;
+            overflow: hidden;
+            background: rgba(255, 215, 0, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .city-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .city-image-container {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .city-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .city-card:hover .city-image {
+            transform: scale(1.1);
+        }
+
+        .city-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.6));
+        }
+
+        .city-info {
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .city-name {
+            color: var(--text-light);
+            margin: 0 0 10px 0;
+            font-size: 1.4em;
+        }
+
+        .city-quote {
+            color: #cccccc;
+            font-size: 0.9em;
+            line-height: 1.4;
+            margin: 0;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .cities-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .city-image-container {
+                height: 160px;
+            }
+        }
+    `;
+    document.head.appendChild(style);
+}
+
+// Hide cities overlay
+function hideCitiesOverlay() {
+    const overlay = document.getElementById('citiesOverlay');
+    if (overlay) {
+        overlay.classList.remove('active');
+        setTimeout(() => overlay.remove(), 300);
+    }
+}
+
+// Handle city selection
+function selectCity(cityName) {
+    console.log(`Selected city: ${cityName}`);
+    showAlert(`Selected location: ${cityName}`, 'success');
+    hideCitiesOverlay();
+}
+
+// Add click event listener to location nav item
+document.addEventListener('DOMContentLoaded', function() {
+    const locationNav = document.querySelector('.nav-item[data-page="location"]');
+    if (locationNav) {
+        locationNav.addEventListener('click', function(e) {
+            e.preventDefault();
+            showCitiesOverlay();
+        });
+    }
+});
+
+// Utility function to show alerts
+function showAlert(message, type = 'success') {
+    const alert = document.createElement('div');
+    alert.className = `alert alert-${type}`;
+    alert.textContent = message;
+    document.body.appendChild(alert);
+    
+    setTimeout(() => {
+        alert.remove();
+    }, 3000);
+}
+
         // Event Listeners Setup
         function setupEventListeners() {
             window.addEventListener('click', function(event) {
