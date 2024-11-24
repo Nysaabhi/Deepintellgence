@@ -871,7 +871,7 @@
     <nav class="bottom-nav">
         <div class="nav-container">
             <div class="nav-item" data-page="subscription">
-                <a href="https://nysaabhi.github.io/chat">
+                <a href="https://forms.gle/dqu6FvCvTNibQ2WT7">
                     <i class="fas fa-comments"></i>
                 </a>
                 <span>Feedback</span>
@@ -1602,69 +1602,101 @@ const categories = [
                     });
                 }
                  
-        // Menu elements
-        const menuButton = document.getElementById('menuButton');
-        const menuOverlay = document.getElementById('menuOverlay');
-        const menuItems = document.querySelectorAll('.menu-item');
-        const chatMessages = document.getElementById('chatMessages');
-        
-        // Toggle menu and handle interactions
-        function toggleMenu(show) {
-            menuOverlay.style.display = show ? 'block' : 'none';
-            
-            // Optional: Add animation classes
-            if (show) {
-                menuOverlay.classList.add('fade-in');
-                document.body.style.overflow = 'hidden'; // Prevent background scrolling
-            } else {
-                menuOverlay.classList.remove('fade-in');
-                document.body.style.overflow = '';
-            }
-        }
-        
-        // Handle service selection
-        function handleServiceSelection(category) {
-            // Create and append message
-            const message = document.createElement('div');
-            message.className = 'message bot-message';
-            message.innerHTML = `
-                <div class="message-avatar">
-                    <i class="fas fa-robot"></i>
-                </div>
-                <div class="message-content">
-                    You've selected ${category} service. Would you like to book an appointment?
-                </div>
-            `;
-            chatMessages.appendChild(message);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
-        
-        // Event Listeners
-        menuButton.addEventListener('click', () => toggleMenu(true));
-        
-        // Close menu when clicking outside
-        menuOverlay.addEventListener('click', (e) => {
-            if (e.target === menuOverlay) {
-                toggleMenu(false);
-            }
-        });
-        
-        // Handle menu item clicks
-        menuItems.forEach(item => {
-            item.addEventListener('click', () => {
-                const category = item.getAttribute('data-category');
-                handleServiceSelection(category);
-                toggleMenu(false);
-            });
-        });
-        
-        // Optional: Close menu with Escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                toggleMenu(false);
-            }
-        });
-        
+// Menu elements
+const menuButton = document.getElementById('menuButton');
+const menuOverlay = document.getElementById('menuOverlay');
+const menuItems = document.querySelectorAll('.menu-item');
+const chatMessages = document.getElementById('chatMessages');
+
+// Add close button element
+const closeButton = document.createElement('button');
+closeButton.innerHTML = '<i class="fas fa-long-arrow-alt-left"></i>'; // Using Font Awesome icon
+closeButton.className = 'menu-close-button';
+menuOverlay.appendChild(closeButton);
+
+// Add CSS for the close button (add this to your stylesheet)
+const style = document.createElement('style');
+style.textContent = `
+    .menu-close-button {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: none;
+        border: none;
+        color: #FFD700;
+        font-size: 24px;
+        cursor: pointer;
+        padding: 5px;
+        z-index: 1001;
+    }
+    
+    .menu-close-button:hover {
+        color: #FFD700;
+    }
+`;
+document.head.appendChild(style);
+
+// Toggle menu and handle interactions
+function toggleMenu(show) {
+    menuOverlay.style.display = show ? 'block' : 'none';
+    
+    // Optional: Add animation classes
+    if (show) {
+        menuOverlay.classList.add('fade-in');
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    } else {
+        menuOverlay.classList.remove('fade-in');
+        document.body.style.overflow = '';
+    }
+}
+
+// Handle service selection
+function handleServiceSelection(category) {
+    // Create and append message
+    const message = document.createElement('div');
+    message.className = 'message bot-message';
+    message.innerHTML = `
+        <div class="message-avatar">
+            <i class="fas fa-robot"></i>
+        </div>
+        <div class="message-content">
+            You've selected ${category} service. Would you like to book an appointment?
+        </div>
+    `;
+    chatMessages.appendChild(message);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+// Event Listeners
+menuButton.addEventListener('click', () => toggleMenu(true));
+
+// Close menu when clicking the close button
+closeButton.addEventListener('click', () => toggleMenu(false));
+
+// Close menu when clicking outside
+menuOverlay.addEventListener('click', (e) => {
+    if (e.target === menuOverlay) {
+        toggleMenu(false);
+    }
+});
+
+// Handle menu item clicks
+menuItems.forEach(item => {
+    item.addEventListener('click', () => {
+        const category = item.getAttribute('data-category');
+        handleServiceSelection(category);
+        toggleMenu(false);
+    });
+});
+
+// Optional: Close menu with Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        toggleMenu(false);
+    }
+});
+
+
                 // Call Functionality
                 function initiateCall() {
                     window.location.href = 'tel:9669181789';
@@ -1746,7 +1778,7 @@ function showCitiesOverlay() {
             <div class="cities-header">
                 <h2>Service Locations</h2>
                 <button class="close-cities" onclick="hideCitiesOverlay()">
-                    <i class="fas fa-times"></i>
+          <i class="fas fa-long-arrow-alt-left"></i>
                 </button>
             </div>
             <div class="cities-grid">
