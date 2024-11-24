@@ -6,7 +6,8 @@
     <title>Deep Chatbot - On-Demand Services</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.css" rel="stylesheet">
-    <style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+   <style>
         :root {
             --primary-color: #FFD700;
             --secondary-color: #FDB931;
@@ -246,26 +247,30 @@
             margin: 0 auto;
         }
         
-        .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-decoration: none;
-            color: #fff;
-            transition: all 0.3s ease;
-            padding: 5px;
-            cursor: pointer;
-        }
-        
-        .nav-item i {
-            color: #fff;
-            font-size: 20px;
-            margin-bottom: 4px;
-        }
-        
-        .nav-item span {
-            font-size: 12px;
-        }
+/* Then update your nav-item styles */
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #fff;
+    transition: all 0.3s ease;
+    padding: 5px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif; /* Added this line */
+}
+
+.nav-item i {
+    color: #fff;
+    font-size: 20px;
+    margin-bottom: 4px;
+}
+
+.nav-item span {
+    font-size: 12px;
+    font-family: 'Poppins', sans-serif; /* Added this line */
+    font-weight: 400; /* You can adjust weight: 400 (regular), 500 (medium), or 600 (semibold) */
+}
         
         /* Animations */
         @keyframes pulse {
