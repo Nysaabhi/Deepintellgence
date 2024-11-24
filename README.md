@@ -1674,27 +1674,27 @@ const categories = [
 const citiesData = [
     {
         name: "Mumbai",
-        image: "https://static.vecteezy.com/system/resources/previews/000/126/281/original/mumbai-landmarks-vector.jpg",  // Using placeholder image
+        image: "https://i.pinimg.com/originals/2c/72/40/2c72408b797d4841b6fe6c395183ba35.png",  // Using placeholder image
         quote: "The city of dreams where ambitions take flight and opportunities never sleep"
     },
     {
         name: "Delhi",
-        image: "https://i.pinimg.com/736x/74/e4/f1/74e4f10b52bc4a7daa81c3e853019390.jpg",
+        image: "https://www.mistay.in/travel-blog/content/images/2020/07/travel-4813658_1920.jpg",
         quote: "Where ancient heritage meets modern aspirations in perfect harmony"
     },
     {
         name: "Bangalore",
-        image: "https://cdn.vectorstock.com/i/preview-1x/23/70/bangalore-india-city-skyline-with-color-buildings-vector-47882370.jpg",
+        image: "https://www.crabintheair.com/wp-content/uploads/2017/09/things-to-do-in-bangalore-1.jpg",
         quote: "Silicon Valley of India, where innovation shapes tomorrow"
     },
     {
         name: "Chennai",
-        image: "https://cdn.dribbble.com/users/158565/screenshots/1359610/madras-shot-1.png",
+        image: "https://orelpc.com/img/image-21.png",
         quote: "The cultural capital where tradition dances with technology"
     },
     {
         name: "Pune",
-        image: "https://cdn.vectorstock.com/i/preview-1x/24/04/pune-india-city-skyline-with-color-buildings-vector-47882404.jpg",
+        image: "https://im.whatshot.in/img/2022/May/wtc-pune-towers-3-cropped-1653542150.jpg",
         quote: "Oxford of the East, where knowledge blooms and culture thrives"
     },
     {
@@ -1866,7 +1866,6 @@ function showCitiesOverlay() {
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.6));
         }
 
         .city-info {
